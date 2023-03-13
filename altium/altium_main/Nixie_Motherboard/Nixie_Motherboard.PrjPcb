@@ -117,7 +117,7 @@ GenerateClassCluster=0
 DocumentUniqueId=VZLHOTED
 
 [Document5]
-DocumentPath=Motherboard.SchDoc
+DocumentPath=STM32.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
