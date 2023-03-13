@@ -1,0 +1,4 @@
+Record=DiagramHierarchy|SourceDocument=MultiBoard.MbsDoc|Kind=Multi-board Schematic Module|Designator=1|Source=..\..\altium_hv\Nixie_HV.PrjPcb
+Record=SubProject|SourceDocument=MultiBoard.MbsDoc|ProjectPath=..\..\altium_hv\Nixie_HV.PrjPcb
+Record=DiagramHierarchy|SourceDocument=MultiBoard.MbsDoc|Kind=Multi-board Schematic Module|Designator=2|Source=..\..\altium_main\Nixie_Motherboard\Nixie_Motherboard.PrjPcb
+Record=SubProject|SourceDocument=MultiBoard.MbsDoc|ProjectPath=..\..\altium_main\Nixie_Motherboard\Nixie_Motherboard.PrjPcb
