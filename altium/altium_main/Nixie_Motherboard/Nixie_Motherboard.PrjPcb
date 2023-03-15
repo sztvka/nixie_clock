@@ -168,7 +168,7 @@ GenerateClassCluster=0
 DocumentUniqueId=SGVMYUKC
 
 [Document8]
-DocumentPath=Nixie1.SchDoc
+DocumentPath=Nixie_1.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
