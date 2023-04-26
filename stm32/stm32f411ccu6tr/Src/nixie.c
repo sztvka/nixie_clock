@@ -5,10 +5,10 @@
 
 
 void setNixieTime(Nixie_Clock* clock, RTC_TimeTypeDef* time) {
-    setNixie(clock->tubes[0], time->Hours/10);
-    setNixie(clock->tubes[1], time->Hours%10);
-    setNixie(clock->tubes[2], time->Minutes/10);
-    setNixie(clock->tubes[3], time->Minutes%10);
+    setNixie(clock->tubes[0], (uint8_t)time->Hours/10);
+    setNixie(clock->tubes[1], (uint8_t)time->Hours%10);
+    setNixie(clock->tubes[2], (uint8_t)time->Minutes/10);
+    setNixie(clock->tubes[3], (uint8_t)time->Minutes%10);
 }
 
 void NixieShuffle(Nixie_Clock* clock) {
@@ -32,12 +32,13 @@ void setNixie(Nixie_IC* nixie, uint8_t value) {
     nixie->value = value;
     for (int i = 0; i < 4; i++) {
         // (value>>i)&1 walks through the bits of value
-        HAL_GPIO_WritePin(nixie->ports[i]->port, nixie->ports[i]->pin, (value>>i)&1);
+        GPIO_PinState state = ((value>>i)&1)==1 ? GPIO_PIN_SET: GPIO_PIN_RESET;
+        HAL_GPIO_WritePin(nixie->ports[i].port, nixie->ports[i].pin, state);
     }
 }
 
 void disableNixie(Nixie_IC* nixie) {
     for (int i = 0; i < 4; i++) {
-        HAL_GPIO_WritePin(nixie->ports[i]->port, nixie->ports[i]->pin, 1);
+        HAL_GPIO_WritePin(nixie->ports[i].port, nixie->ports[i].pin, GPIO_PIN_SET);
     }
 }

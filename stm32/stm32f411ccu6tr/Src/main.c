@@ -31,6 +31,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define BUTTON_1_PORT GPIOB
+#define BUTTON_1_PIN GPIO_PIN_13
+#define BUTTON_2_PORT GPIOB
+#define BUTTON_2_PIN GPIO_PIN_14
+#define BUTTON_3_PORT GPIOA
+#define BUTTON_3_PIN GPIO_PIN_8
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -154,7 +161,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+
       HAL_RTC_GetTime(&hrtc, &RtcTime, RTC_FORMAT_BIN);
       HAL_RTC_GetDate(&hrtc, &RtcDate, RTC_FORMAT_BIN); //need to read date for proper timekeeping
       if(CompareMinutes != RtcTime.Minutes)
@@ -167,6 +174,47 @@ int main(void)
           CompareHours = RtcTime.Hours;
           NixieShuffle(&clock);
       }
+
+
+      if(HAL_GPIO_ReadPin(BUTTON_1_PORT, BUTTON_1_PIN)==GPIO_PIN_RESET){
+            HAL_Delay(100);
+            if(HAL_GPIO_ReadPin(BUTTON_1_PORT, BUTTON_1_PIN)==GPIO_PIN_RESET){
+                RTC_TimeTypeDef adjTime = RtcTime;
+                if(adjTime.Minutes==59){
+                    adjTime.Minutes = 0;
+                    adjTime.Hours = (adjTime.Hours+1)%24;
+                }
+                else adjTime.Minutes++;
+
+                if (HAL_RTC_SetTime(&hrtc, &adjTime, RTC_FORMAT_BIN) != HAL_OK)
+                 {
+                      Error_Handler();
+                 }
+
+            }
+      }
+
+      if(HAL_GPIO_ReadPin(BUTTON_3_PORT, BUTTON_3_PIN)==GPIO_PIN_RESET){
+          HAL_Delay(100);
+          if(HAL_GPIO_ReadPin(BUTTON_3_PORT, BUTTON_3_PIN)==GPIO_PIN_RESET){
+              RTC_TimeTypeDef adjTime = RtcTime;
+              if(adjTime.Minutes==0){
+                  adjTime.Minutes = 59;
+                    adjTime.Hours = adjTime.Hours==0 ? 23 : adjTime.Hours-1;
+              }
+              else adjTime.Minutes--;
+
+              if (HAL_RTC_SetTime(&hrtc, &adjTime, RTC_FORMAT_BIN) != HAL_OK)
+              {
+                  Error_Handler();
+              }
+
+          }
+      }
+
+
+    /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -231,6 +279,9 @@ static void MX_RTC_Init(void)
 
   /* USER CODE END RTC_Init 0 */
 
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
+
   /* USER CODE BEGIN RTC_Init 1 */
 
   /* USER CODE END RTC_Init 1 */
@@ -248,8 +299,46 @@ static void MX_RTC_Init(void)
   {
     Error_Handler();
   }
+
+  /* USER CODE BEGIN Check_RTC_BKUP */
+    HAL_RTC_GetTime(&hrtc, &RtcTime, RTC_FORMAT_BIN);
+    HAL_RTC_GetDate(&hrtc, &RtcDate, RTC_FORMAT_BIN);
+    return;
+  /* USER CODE END Check_RTC_BKUP */
+
+  /** Initialize RTC and set the Time and Date
+  */
+  sTime.Hours = 11;
+  sTime.Minutes = 30;
+  sTime.Seconds = 0;
+  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+  sDate.Month = RTC_MONTH_JANUARY;
+  sDate.Date = 1;
+  sDate.Year = 0;
+
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN RTC_Init 2 */
 
+
+
+
+  //  RTC_TimeTypeDef sTime = {0};
+   // sTime.Hours = 10;
+    //sTime.Minutes = 1;
+    //sTime.Seconds = 0;
+    //if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+   // {
+  //      Error_Handler();
+   // }
   /* USER CODE END RTC_Init 2 */
 
 }

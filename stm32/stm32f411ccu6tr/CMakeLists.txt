@@ -18,12 +18,6 @@ project(stm32f411ccu6tr C CXX ASM)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 
-string(TIMESTAMP build_hour "%H")
-string(TIMESTAMP build_minute "%M")
-string(TIMESTAMP build_second "%S")
-
-add_compile_definitions(BUILD_HOUR=${build_hour} BUILD_MINUTE=${build_minute} BUILD_SECOND=${build_second})
-
 #Uncomment for hardware floating point
 #add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
 #add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)

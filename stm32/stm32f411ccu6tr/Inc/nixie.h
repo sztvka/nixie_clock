@@ -14,7 +14,7 @@ typedef struct {
 } Nixie_Pin;
 
 typedef struct {
-    Nixie_Pin* ports[4]; // A , B , C , D
+    Nixie_Pin *ports; // A , B , C , D
     uint8_t value;
 } Nixie_IC;
 
