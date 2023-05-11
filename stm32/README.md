@@ -1,0 +1,2 @@
+# STM32 source code
+This code is written for the STM32F411RE. The `stm32f411ccu6tr` directory contains a release version of the app, while `nucleo_f411re`contains a STM32 Nucleo board sample used for testing, without peripherals.
