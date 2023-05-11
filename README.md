@@ -6,7 +6,7 @@ My attempt at reusing scrapped nixie tubes with their good old driver ICs.
 ## Hardware
  - Z5730M Nixie Tubes
  - 74141 IC drivers 
- - 12-180V boost converter designed by [https://desmith.net/NMdS/Electronics/NixiePSU.html]Nick de Smith, modified to suit the design
+ - 12-180V boost converter designed by [Nick de Smith](https://desmith.net/NMdS/Electronics/NixiePSU.html), modified to suit the design
  - STM32F411 MCU for control
 
  This design uses voltage-level shifters to properly drive Nixie Tube ICs. Altium Designer files, software and 3d models are available in their respective directories.

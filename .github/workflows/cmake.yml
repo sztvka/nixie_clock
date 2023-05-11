@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'README.MD'
       - 'LICENSE.MD'
-      = 'img/*'
+      - 'img/*'
       - 'altium/*'
       - '3d_model/*'
   pull_request:
