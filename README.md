@@ -1,5 +1,6 @@
 # Nixie Clock
 ![photo1](img/img2.jpg?raw=true "Photo")
+[![CMake STM32F411CCU6TR](https://github.com/sztvka/nixie_clock/actions/workflows/cmake.yml/badge.svg)](https://github.com/sztvka/nixie_clock/actions/workflows/cmake.yml)
 
 My attempt at reusing scrapped nixie tubes with their good old driver ICs. 
 
