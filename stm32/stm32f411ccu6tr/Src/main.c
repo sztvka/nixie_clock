@@ -301,8 +301,9 @@ static void MX_RTC_Init(void)
   }
 
   /* USER CODE BEGIN Check_RTC_BKUP */
-    HAL_RTC_GetTime(&hrtc, &RtcTime, RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc, &RtcDate, RTC_FORMAT_BIN);
+
+    //HAL_RTC_GetTime(&hrtc, &RtcTime, RTC_FORMAT_BIN);
+    //HAL_RTC_GetDate(&hrtc, &RtcDate, RTC_FORMAT_BIN);
     return;
   /* USER CODE END Check_RTC_BKUP */
 
